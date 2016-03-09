@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "lyticalcns",
+    "packageName": "za.co.anylytical.lyticalcns",
+    "packageFolder": "za/co/anylytical/lyticalcns",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "hazelcast",
+    "websocket": "spring-websocket",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": "no",
+    "useSass": true,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": true,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "f6c29641ed956835dc58eb87b342a47bdef11b98",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}
