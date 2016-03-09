@@ -63,6 +63,7 @@
     "node": "^0.12 || ^4.2"
   },
   "scripts": {
+    "postinstall": "grunt uglify",
     "test": "grunt test"
   }
 }
