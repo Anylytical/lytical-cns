@@ -38,9 +38,9 @@ public class HerokuDatabaseConfiguration extends AbstractMongoConfiguration {
     @SuppressWarnings("deprecation")
     @Bean
     public MongoURI mongoURI() {
-        log.info("connecting to db");
+        log.info("connecting to heroku mongodb");
         MongoURI mongoURI = new MongoURI(System.getenv("MONGOHQ_URL"));
-        assert mongoURI != null : "missing MONGOHQ_URL";
+        assert mongoURI != null : "MISSING MONGOHQ_URL";
         return mongoURI;
     }
 
