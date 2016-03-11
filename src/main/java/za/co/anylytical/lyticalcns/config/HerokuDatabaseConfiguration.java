@@ -39,7 +39,7 @@ public class HerokuDatabaseConfiguration extends AbstractMongoConfiguration {
     @Bean
     public MongoURI mongoURI() {
         log.info("connecting to heroku mongodb");
-        MongoURI mongoURI = new MongoURI(System.getenv("MONGOHQ_URL"));
+        MongoURI mongoURI = new MongoURI(System.getenv("MONGOLAB_URI"));
         assert mongoURI != null : "MISSING MONGOHQ_URL";
         return mongoURI;
     }
