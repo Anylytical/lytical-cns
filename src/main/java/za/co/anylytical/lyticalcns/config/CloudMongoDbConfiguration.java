@@ -1,6 +1,8 @@
 package za.co.anylytical.lyticalcns.config;
 
 import com.mongodb.Mongo;
+import com.mongodb.MongoURI;
+import org.springframework.context.annotation.DependsOn;
 import za.co.anylytical.lyticalcns.domain.util.JSR310DateConverters.*;
 
 import org.slf4j.Logger;
@@ -27,8 +29,40 @@ public class CloudMongoDbConfiguration extends AbstractMongoConfiguration  {
 
     private final Logger log = LoggerFactory.getLogger(CloudDatabaseConfiguration.class);
 
+    public static final String MONGO_URI_BEAN_NAME = "mongoURI";
+
+
+//    @Inject
+//    private MongoDbFactory mongoDbFactory;
+
+
     @Inject
-    private MongoDbFactory mongoDbFactory;
+    private Mongo mongo;
+
+    @SuppressWarnings("deprecation")
+    @Bean
+    public MongoURI mongoURI() {
+        log.info("connecting to heroku mongodb");
+        MongoURI mongoURI = new MongoURI(System.getenv("MONGOLAB_URI"));
+        assert mongoURI != null : "MISSING MONGOHQ_URL";
+        return mongoURI;
+    }
+
+
+    @Override
+    @DependsOn(MONGO_URI_BEAN_NAME)
+    @Bean
+    protected String getDatabaseName() {
+        return mongoURI().getDatabase();
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    @DependsOn(MONGO_URI_BEAN_NAME)
+    @Bean
+    public Mongo mongo() throws Exception {
+        return new Mongo(mongoURI());
+    }
 
     @Bean
     public ValidatingMongoEventListener validatingMongoEventListener() {
@@ -52,13 +86,13 @@ public class CloudMongoDbConfiguration extends AbstractMongoConfiguration  {
         return new CustomConversions(converterList);
     }
 
-    @Override
-    protected String getDatabaseName() {
-        return mongoDbFactory.getDb().getName();
-    }
-
-    @Override
-    public Mongo mongo() throws Exception {
-        return mongoDbFactory().getDb().getMongo();
-    }
+//    @Override
+//    protected String getDatabaseName() {
+//        return mongoDbFactory.getDb().getName();
+//    }
+//
+//    @Override
+//    public Mongo mongo() throws Exception {
+//        return mongoDbFactory().getDb().getMongo();
+//    }
 }
