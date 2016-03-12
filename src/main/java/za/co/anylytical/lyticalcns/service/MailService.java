@@ -37,8 +37,8 @@ public class MailService {
     @Inject
     private JHipsterProperties jHipsterProperties;
 
-    @Inject
-    @Lazy
+   // @Inject
+    //@Lazy
     private JavaMailSenderImpl javaMailSender;
 
     @Inject
