@@ -1,5 +1,7 @@
 package za.co.anylytical.lyticalcns.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import za.co.anylytical.lyticalcns.config.JHipsterProperties;
 import za.co.anylytical.lyticalcns.domain.User;
 
@@ -36,6 +38,7 @@ public class MailService {
     private JHipsterProperties jHipsterProperties;
 
     @Inject
+    @Lazy
     private JavaMailSenderImpl javaMailSender;
 
     @Inject
