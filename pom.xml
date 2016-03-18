@@ -688,7 +688,9 @@
         </profile>
         <profile>
             <id>prod</id>
-            <activeByDefault>true</activeByDefault>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
