@@ -688,6 +688,7 @@
         </profile>
         <profile>
             <id>prod</id>
+            <activeByDefault>true</activeByDefault>
             <build>
                 <plugins>
                     <plugin>
