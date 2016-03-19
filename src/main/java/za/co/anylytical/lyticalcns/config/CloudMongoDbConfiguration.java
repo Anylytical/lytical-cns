@@ -98,14 +98,4 @@ public class CloudMongoDbConfiguration extends AbstractMongoConfiguration  {
 //        return mongoDbFactory().getDb().getMongo();
 //    }
 
-    @Bean
-    public Mongeez mongeez() {
-        log.debug("Configuring Mongeez");
-        Mongeez mongeez = new Mongeez();
-        mongeez.setFile(new ClassPathResource("/config/mongeez/master.xml"));
-        mongeez.setMongo(mongo);
-        mongeez.setDbName(getDatabaseName());
-        mongeez.process();
-        return mongeez;
-    }
 }
