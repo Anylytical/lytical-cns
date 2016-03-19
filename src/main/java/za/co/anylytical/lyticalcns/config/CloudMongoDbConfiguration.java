@@ -2,7 +2,9 @@ package za.co.anylytical.lyticalcns.config;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoURI;
+import org.mongeez.Mongeez;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.io.ClassPathResource;
 import za.co.anylytical.lyticalcns.domain.util.JSR310DateConverters.*;
 
 import org.slf4j.Logger;
@@ -95,4 +97,15 @@ public class CloudMongoDbConfiguration extends AbstractMongoConfiguration  {
 //    public Mongo mongo() throws Exception {
 //        return mongoDbFactory().getDb().getMongo();
 //    }
+
+    @Bean
+    public Mongeez mongeez() {
+        log.debug("Configuring Mongeez");
+        Mongeez mongeez = new Mongeez();
+        mongeez.setFile(new ClassPathResource("/config/mongeez/master.xml"));
+        mongeez.setMongo(mongo);
+        mongeez.setDbName(getDatabaseName());
+        mongeez.process();
+        return mongeez;
+    }
 }
